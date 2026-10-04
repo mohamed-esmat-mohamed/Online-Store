@@ -108,5 +108,19 @@
         }
 
         #endregion
+
+        #region Filter
+        static List<Product> FilterProducts(List<Product> products, Predicate<Product> predicate)
+        {
+            List<Product> result = new List<Product>();
+            foreach (Product p in products)
+            {
+                if (predicate(p))
+                    result.Add(p);
+            }
+            return result;
+        }
+
+        #endregion
     }
 }
