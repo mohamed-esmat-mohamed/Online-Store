@@ -13,6 +13,12 @@
 
     #endregion
 
+    #region Delegates
+
+    public delegate bool ProductCondition(Product p);
+
+    #endregion
+
 
     internal class Program
     {
