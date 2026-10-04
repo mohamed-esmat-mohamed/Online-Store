@@ -98,5 +98,15 @@
                 action(p);
         }
         #endregion
+        #region Transform 
+        static List<string> TransformProducts(List<Product> products, Func<Product, string> transform)
+        {
+            List<string> result = new List<string>();
+            foreach (Product p in products)
+                result.Add(transform(p));
+            return result;
+        }
+
+        #endregion
     }
 }
