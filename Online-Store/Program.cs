@@ -53,5 +53,39 @@
         }
 
         #endregion
+
+        #region Product Search
+
+        static List<Product> SearchProducts(List<Product> products, Func<Product, bool> filter)
+        {
+            List<Product> result = new List<Product>();
+            foreach (Product p in products)
+            {
+                if (filter(p))
+                    result.Add(p);
+            }
+            return result;
+        }
+
+        static void PrintSearchResult(string title, List<Product> products)
+        {
+            Console.WriteLine("-----" + title + " ------=-");
+            foreach (Product p in products)
+                Console.WriteLine(p.Name + " - $" + p.Price + " (Stock: " + p.Stock + ")");
+            Console.WriteLine();
+        }
+        static void RunTask01()
+        {
+            PrintSearchResult("Electronics",
+                SearchProducts(catalog, delegate (Product p) { return p.Category == "Electronics"; }));
+            PrintSearchResult("Under $50",
+                SearchProducts(catalog, delegate (Product p) { return p.Price < 50; }));
+            PrintSearchResult("In Stock",
+                SearchProducts(catalog, p => p.Stock > 0));
+            PrintSearchResult("Clothing Under $100",
+                SearchProducts(catalog, p => p.Category == "Clothing" && p.Price < 100));
+        }
+
+        #endregion
     }
 }
