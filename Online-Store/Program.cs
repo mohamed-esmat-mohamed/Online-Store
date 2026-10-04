@@ -87,5 +87,16 @@
         }
 
         #endregion
+
+
+        
+
+        #region Print Reports
+        static void PrintReport(List<Product> products, Action<Product> action)
+        {
+            foreach (Product p in products)
+                action(p);
+        }
+        #endregion
     }
 }
