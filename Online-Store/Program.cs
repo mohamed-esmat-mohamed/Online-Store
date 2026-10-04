@@ -40,5 +40,18 @@
         {
             
         }
+        #region List Search
+        static List<Product> SearchWithCustomDelegate(List<Product> products, ProductCondition condition)
+        {
+            List<Product> result = new List<Product>();
+            foreach (Product p in products)
+            {
+                if (condition(p))
+                    result.Add(p);
+            }
+            return result;
+        }
+
+        #endregion
     }
 }
