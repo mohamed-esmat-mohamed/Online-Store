@@ -38,7 +38,8 @@
         };
         static void Main(string[] args)
         {
-            
+            RunTask01();
+            RunTask03();
         }
         #region List Search
         static List<Product> SearchWithCustomDelegate(List<Product> products, ProductCondition condition)
