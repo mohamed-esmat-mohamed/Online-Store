@@ -122,5 +122,38 @@
         }
 
         #endregion
+
+        #region Run
+        static void RunTask03()
+        {
+            Console.WriteLine("--- Short Report ---");
+            PrintReport(catalog, delegate (Product p)
+            {
+                Console.WriteLine(p.Name + " - $" + p.Price);
+            });
+            Console.WriteLine();
+            Console.WriteLine("--- Detailed Report ---");
+            PrintReport(catalog, p =>
+                Console.WriteLine("[" + p.Category + "] " + p.Name + " | Price: $" + p.Price + " | Stock: " + p.Stock));
+            Console.WriteLine();
+            Console.WriteLine("--- Summary List ---");
+            List<string> summary = TransformProducts(catalog, delegate (Product p)
+            {
+                return p.Name + " ($" + p.Price + ")";
+            });
+            foreach (string s in summary)
+                Console.WriteLine(s);
+            Console.WriteLine();
+            Console.WriteLine("==== Price Labels ===");
+            List<string> labels = TransformProducts(catalog, p => p.Name + ": " + (p.Price > 100 ? "Expensive!" : "Affordable"));
+            foreach (string l in labels)
+                Console.WriteLine(l);
+            Console.WriteLine();
+            Console.WriteLine("---=-- Low-Stock Alert ----=-");
+            List<Product> lowStock = FilterProducts(catalog, p => p.Stock < 20);
+            foreach (Product p in lowStock)
+                Console.WriteLine("[LOW STOCK] " + p.Name + ": only " + p.Stock + " left!");
+        }
+        #endregion
     }
 }
